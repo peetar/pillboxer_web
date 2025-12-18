@@ -2,6 +2,7 @@ services:
   - type: web
     name: pillboxer
     runtime: ruby
+    plan: free
     buildCommand: "./bin/render-build.sh"
     startCommand: "bundle exec puma -C config/puma.rb"
     envVars:
