@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Edit <%= @medication.name %> - Pill Boxer</title>
+  <link rel="stylesheet" href="/assets/stylesheets/application.css">
+  <style>
+    .form-container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #374151;
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .btn-primary {
+      background-color: #3b82f6;
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background-color: #2563eb;
+    }
+    
+    .btn-secondary {
+      background-color: #f3f4f6;
+      color: #374151;
+      border: 2px solid #d1d5db;
+    }
+    
+    .btn-secondary:hover {
+      background-color: #e5e7eb;
+    }
+    
+    .btn-danger {
+      background-color: #dc2626;
+      color: white;
+    }
+    
+    .btn-danger:hover {
+      background-color: #b91c1c;
+    }
+    
+    .form-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 30px;
+    }
+    
+    .form-actions .btn {
+      flex: 1;
+    }
+    
+    .danger-zone {
+      border-top: 1px solid #e5e7eb;
+      margin-top: 40px;
+      padding-top: 30px;
+    }
+    
+    .danger-zone h3 {
+      color: #dc2626;
+      margin-bottom: 16px;
+    }
+    
+    .error-messages {
+      background-color: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 20px;
+      color: #dc2626;
+    }
+    
+    .error-messages ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <%= render 'shared/navigation' %>
+  
+  <div class="form-container">
+    <h1>Edit <%= @medication.name %></h1>
+    
+    <% if @medication.errors.any? %>
+      <div class="error-messages">
+        <h3><%= pluralize(@medication.errors.count, "error") %> prohibited this medication from being saved:</h3>
+        <ul>
+          <% @medication.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    
+    <%= form_with model: @medication, local: true do |form| %>
+      <div class="form-group">
+        <%= form.label :name, "Medication Name *" %>
+        <%= form.text_field :name, required: true %>
+      </div>
+      
+      <div class="form-group">
+        <%= form.label :dosage, "Dosage *" %>
+        <%= form.text_field :dosage, required: true %>
+      </div>
+      
+      <div class="form-group">
+        <%= form.label :frequency, "Frequency *" %>
+        <%= form.select :frequency, 
+            [
+              ['Once daily', 'once_daily'],
+              ['Twice daily', 'twice_daily'], 
+              ['Three times daily', 'three_times_daily'],
+              ['Four times daily', 'four_times_daily'],
+              ['As needed', 'as_needed'],
+              ['Other', 'other']
+            ], 
+            {},
+            { required: true }
+        %>
+      </div>
+      
+      <div class="form-group">
+        <%= form.label :instructions, "Instructions" %>
+        <%= form.text_area :instructions, rows: 3 %>
+      </div>
+      
+      <div class="form-group">
+        <%= form.label :color, "Pill Color" %>
+        <%= form.select :color,
+            [
+              ['White', 'white'],
+              ['Blue', 'blue'],
+              ['Red', 'red'],
+              ['Yellow', 'yellow'],
+              ['Green', 'green'],
+              ['Pink', 'pink'],
+              ['Orange', 'orange'],
+              ['Purple', 'purple'],
+              ['Brown', 'brown'],
+              ['Clear', 'clear'],
+              ['Other', 'other']
+            ],
+            { include_blank: 'Select color...' }
+        %>
+      </div>
+      
+      <div class="form-group">
+        <%= form.label :shape, "Pill Shape" %>
+        <%= form.select :shape,
+            [
+              ['Round', 'round'],
+              ['Oval', 'oval'],
+              ['Capsule', 'capsule'],
+              ['Square', 'square'],
+              ['Triangle', 'triangle'],
+              ['Diamond', 'diamond'],
+              ['Other', 'other']
+            ],
+            { include_blank: 'Select shape...' }
+        %>
+      </div>
+      
+      <div class="form-actions">
+        <%= link_to "Cancel", root_path, class: "btn btn-secondary" %>
+        <%= form.submit "Update Medication", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+    
+    <div class="danger-zone">
+      <h3>Danger Zone</h3>
+      <p>Remove this medication from your list. This action cannot be undone.</p>
+      <%= link_to "Remove Medication", 
+          medication_path(@medication), 
+          method: :delete, 
+          class: "btn btn-danger",
+          data: { 
+            confirm: "Are you sure you want to remove #{@medication.name}? This cannot be undone." 
+          } 
+      %>
+    </div>
+  </div>
+</body>
+</html>

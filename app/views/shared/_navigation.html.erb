@@ -1,0 +1,130 @@
+<nav class="navbar">
+  <div class="navbar-container">
+    <div class="navbar-brand">
+      <%= link_to root_path, class: "brand-link" do %>
+        💊 Pill Boxer
+      <% end %>
+    </div>
+    
+    <div class="navbar-nav">
+      <%= link_to "Home", root_path, class: "nav-link #{'active' if request.path == '/'}" %>
+      
+      <div class="navbar-user">
+        <span class="user-name">
+          👋 <%= current_user.name %>
+        </span>
+        <%= link_to "Logout", logout_path, method: :delete, class: "logout-link" %>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<style>
+  .navbar {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar-brand .brand-link {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1f2937;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .navbar-brand .brand-link:hover {
+    color: #3b82f6;
+  }
+  
+  .navbar-nav {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  
+  .nav-link {
+    color: #6b7280;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: all 0.2s;
+  }
+  
+  .nav-link:hover,
+  .nav-link.active {
+    color: #3b82f6;
+    background-color: #eff6ff;
+  }
+  
+  .navbar-user {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-left: 1px solid #e5e7eb;
+    padding-left: 24px;
+  }
+  
+  .user-name {
+    font-size: 14px;
+    color: #374151;
+    font-weight: 500;
+  }
+  
+  .logout-link {
+    color: #6b7280;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    border: 1px solid #d1d5db;
+    transition: all 0.2s;
+  }
+  
+  .logout-link:hover {
+    background-color: #f9fafb;
+    border-color: #9ca3af;
+    color: #374151;
+  }
+  
+  /* Mobile responsive */
+  @media (max-width: 768px) {
+    .navbar-container {
+      padding: 12px 16px;
+      flex-direction: column;
+      gap: 16px;
+    }
+    
+    .navbar-nav {
+      width: 100%;
+      justify-content: space-between;
+    }
+    
+    .navbar-user {
+      border-left: none;
+      padding-left: 0;
+      gap: 12px;
+    }
+    
+    .user-name {
+      font-size: 13px;
+    }
+  }
+</style>

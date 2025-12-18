@@ -1,0 +1,44 @@
+# Git
+.git
+.gitignore
+
+# Logs
+log/*
+tmp/*
+*.log
+
+# Documentation
+README.md
+doc/
+*.md
+
+# Environment and secrets
+.env
+.env.*
+tmp/local_secret.txt
+
+# Development database
+db/*.sqlite3
+db/*.sqlite3-*
+
+# Test files
+test/
+spec/
+
+# Node modules (if any)
+node_modules/
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+public/assets/
+tmp/cache/

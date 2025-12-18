@@ -1,0 +1,16 @@
+<h1>Pill Boxer Test</h1>
+<p>If you can see this, the basic Rails app is working!</p>
+
+<h2>Debug Info:</h2>
+<p>Medications count: <%= @medications.count %></p>
+<p>Schedules count: <%= @schedules.count %></p>
+<p>Today's logs count: <%= @today_logs.count %></p>
+
+<% if @todays_medications %>
+  <h3>Today's Medications:</h3>
+  <ul>
+    <% @todays_medications.each do |time_period| %>
+      <li><%= time_period[:time] %>: <%= time_period[:count] %> medications</li>
+    <% end %>
+  </ul>
+<% end %>

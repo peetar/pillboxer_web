@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pill Boxer</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    
+    <% if native_app? %>
+      <meta name="turbo-native-bridge" content="true">
+    <% end %>
+    
+    <script type="module">
+      import * as Turbo from "https://cdn.jsdelivr.net/npm/@hotwired/turbo@8.0.12/+esm";
+    </script>
+    
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  </head>
+
+  <body>
+    <header class="navbar">
+      <div class="container">
+        <%= link_to "💊 Pill Boxer", root_path, class: "navbar-brand" %>
+        
+        <nav class="navbar-nav">
+          <%= link_to "Dashboard", root_path, class: "nav-link" %>
+          <%= link_to "Medications", medications_path, class: "nav-link" %>
+          <%= link_to "Schedules", schedules_path, class: "nav-link" %>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <% if notice %>
+        <div class="alert alert-success" data-controller="auto-dismiss">
+          <%= notice %>
+        </div>
+      <% end %>
+      
+      <% if alert %>
+        <div class="alert alert-danger" data-controller="auto-dismiss">
+          <%= alert %>
+        </div>
+      <% end %>
+
+      <%= yield %>
+    </main>
+
+    <% if native_app? %>
+      <div class="native-menu">
+        <%= link_to "🏠", root_path, class: "nav-item" %>
+        <%= link_to "💊", medications_path, class: "nav-item" %>
+        <%= link_to "📋", schedules_path, class: "nav-item" %>
+      </div>
+    <% end %>
+  </body>
+</html>

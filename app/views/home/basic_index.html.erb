@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pill Boxer</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
+        .container { max-width: 600px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; }
+        h1 { color: #333; }
+        .medication { background: #e8f4f8; padding: 10px; margin: 10px 0; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💊 Pill Boxer Dashboard</h1>
+        
+        <h2>Database Status</h2>
+        <p>✅ Connected and working!</p>
+        <p>Medications in database: <strong><%= @medications.count %></strong></p>
+        <p>Schedules in database: <strong><%= @schedules.count %></strong></p>
+        
+        <h2>Your Medications</h2>
+        <% if @medications.any? %>
+            <% @medications.each do |medication| %>
+                <div class="medication">
+                    <strong><%= medication.name %></strong><br>
+                    Dosage: <%= medication.dosage %><br>
+                    Frequency: <%= medication.frequency %>
+                </div>
+            <% end %>
+        <% else %>
+            <p>No medications found</p>
+        <% end %>
+        
+        <h2>Time Periods</h2>
+        <% @todays_medications.each do |period| %>
+            <p><%= period[:time].capitalize %>: <%= period[:count] %> medications</p>
+        <% end %>
+    </div>
+</body>
+</html>
