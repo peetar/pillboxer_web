@@ -15400,3 +15400,9 @@ Processing by PillboxesController#fill as HTML
 Completed 200 OK in 61ms (Views: 0.3ms | ActiveRecord: 1.8ms | Allocations: 23552)
 
 
+[ActionDispatch::HostAuthorization::DefaultResponseApp] Blocked hosts: 068765c1497e.ngrok-free.app, 068765c1497e.ngrok-free.app
+[ActionDispatch::HostAuthorization::DefaultResponseApp] Blocked hosts: 068765c1497e.ngrok-free.app, 068765c1497e.ngrok-free.app
+[ActionDispatch::HostAuthorization::DefaultResponseApp] Blocked hosts: 068765c1497e.ngrok-free.app, 068765c1497e.ngrok-free.app
+[ActionDispatch::HostAuthorization::DefaultResponseApp] Blocked hosts: 068765c1497e.ngrok-free.app, 068765c1497e.ngrok-free.app
+[ActionDispatch::HostAuthorization::DefaultResponseApp] Blocked hosts: d881fa8e1264.ngrok-free.app, d881fa8e1264.ngrok-free.app
+[ActionDispatch::HostAuthorization::DefaultResponseApp] Blocked hosts: d881fa8e1264.ngrok-free.app, d881fa8e1264.ngrok-free.app
